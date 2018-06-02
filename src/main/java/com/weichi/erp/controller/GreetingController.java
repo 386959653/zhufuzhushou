@@ -25,7 +25,8 @@ public class GreetingController {
     @RequestMapping("/hello2")
     public String index() {
         logger.info("hello world");
-        return "Greetings from Spring Boot!";
+//        return "Greetings from Spring Boot!";
+        return service.selectById(1).toString();
     }
 
     @RequestMapping("/userList")

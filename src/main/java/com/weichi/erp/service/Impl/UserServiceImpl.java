@@ -1,6 +1,7 @@
 package com.weichi.erp.service.Impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.weichi.erp.dao.TBlogMapper;
 import com.weichi.erp.dao.UserDao;
 import com.weichi.erp.domain.TBlog;
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by Wewon on 2018/5/18 16:53
  */
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserDao, User> implements IUserService {
 
     @Autowired
     private UserDao userDao;

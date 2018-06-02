@@ -18,3 +18,4 @@
     9. 实现了mybatis的分页功能
     10. 实现了把maven依赖库和插件远程仓库配置在pom.xml中（目前是阿里云的仓库）
     11. 既支持通过 @RestController 注解生成restful风格（前后端分离用），也支持通过 @Controller 注解，把页面传到freemarker
+    12. 实现了mybatisPlus的通用CRUD功能

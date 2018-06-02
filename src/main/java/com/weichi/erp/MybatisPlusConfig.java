@@ -102,6 +102,8 @@ public class MybatisPlusConfig {
         }
         GlobalConfiguration globalConfiguration = new GlobalConfiguration();
         globalConfiguration.setRefresh(refreshMapper);
+        globalConfiguration.setDbColumnUnderline(true);
+        globalConfiguration.isCapitalMode();
         mybatisPlus.setGlobalConfig(globalConfiguration);
         return mybatisPlus;
     }
