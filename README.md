@@ -10,7 +10,7 @@
     2. 实现了mybatis热加载
     3. 实现了在开发环境中控制台打印sql语句
     4. 实现了利用maven让应用在不同的环境使用不同的配置
-    5. 实现基于springSecurity的登录验证（默认用户名可以随便写，密码是：123）
+    5. 实现基于springSecurity可以在数据库里配置的登录验证（默认用户名admin，密码是：123）
     6. ErpApplication类添加注解（@SpringBootApplication(exclude = { SecurityAutoConfiguration.class})）
     可以不注入springSecurity，达到不用登录验证的目的
     7. 有完整的日志功能，获取日志语句：private Logger logger = LoggerFactory.getLogger(this.getClass());
