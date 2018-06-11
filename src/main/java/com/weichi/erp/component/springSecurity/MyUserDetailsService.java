@@ -38,7 +38,10 @@ public class MyUserDetailsService implements UserDetailsService {
         sysUserCondition.setUsername(s);
         SysUser sysUser = sysUserMapper.selectOne(sysUserCondition);
 
-        List<Object> roleNameList = new SysRole().sql().selectObjs("SELECT t.`role_name` FROM sys_role t WHERE t.`id` IN (SELECT t2.`role_id`  FROM user_role t2 WHERE t2.`user_id`={0})"
+        List<Object> roleNameList = new SysRole().sql().selectObjs("SELECT t3.`role_name` FROM sys_role t3 WHERE t3.`id` IN" +
+                        "( SELECT t.`pid` FROM sys_role t WHERE t.`id` IN (SELECT t2.`role_id`  FROM user_role t2 WHERE t2.`user_id`={0}))\n" +
+                        "UNION \n" +
+                        "SELECT t.`role_name` FROM sys_role t WHERE t.`id` IN (SELECT t2.`role_id`  FROM user_role t2 WHERE t2.`user_id`={0})"
                 , sysUser.getId());
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (Object roleName : roleNameList) {

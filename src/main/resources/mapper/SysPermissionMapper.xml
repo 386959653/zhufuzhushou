@@ -10,7 +10,6 @@
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
         <result column="url" jdbcType="VARCHAR" property="url"/>
-        <result column="pid" jdbcType="BIGINT" property="pid"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--

@@ -39,13 +39,12 @@ CREATE TABLE `sys_permission` (
   `id` bigint(20) NOT NULL,
   `permission_name` varchar(100) DEFAULT NULL,
   `url` varchar(2083) DEFAULT NULL,
-  `pid` bigint(20) DEFAULT NULL COMMENT '父权限id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_permission` */
 
-insert  into `sys_permission`(`id`,`permission_name`,`url`,`pid`) values (1,'管理员','/userList',NULL);
+insert  into `sys_permission`(`id`,`permission_name`,`url`) values (1,'管理员','/userList');
 
 /*Table structure for table `sys_role` */
 
@@ -53,13 +52,14 @@ DROP TABLE IF EXISTS `sys_role`;
 
 CREATE TABLE `sys_role` (
   `id` bigint(20) NOT NULL,
-  `role_name` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `role_name` varchar(100) DEFAULT NULL,
+  `pid` bigint(20) DEFAULT NULL COMMENT '父角色id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_role` */
 
-insert  into `sys_role`(`id`,`role_name`) values (1,'admin'),(2,'user');
+insert  into `sys_role`(`id`,`role_name`,`pid`) values (1,'admin',2),(2,'user',NULL);
 
 /*Table structure for table `sys_user` */
 
