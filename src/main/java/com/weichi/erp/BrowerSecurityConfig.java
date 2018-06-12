@@ -25,10 +25,14 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()                    //  定义当需要用户登录时候，转到的登录页面。
                 .loginPage("/login")           // 设置登录页面
                 .permitAll()
-                .loginProcessingUrl("/user/login")  // 自定义的登录接口
+                .loginProcessingUrl("/user/login")  // 登录请求拦截的url,也就是form表单提交时指定的action
+                .failureForwardUrl("/login?error=error") // 登录失败页面
+                .and()
+                .logout()
+                .logoutUrl("/logout")
                 .and()
                 .authorizeRequests()        // 定义哪些URL需要被保护、哪些不需要被保护
-                .antMatchers("/hello2").permitAll()
+//                .antMatchers("/hello2").permitAll()
 //                .antMatchers("/userList").hasAuthority("admin")
                 .anyRequest()               // 任何请求,登录后可以访问
                 .authenticated()

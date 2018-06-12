@@ -23,10 +23,8 @@
         </tr>
     </table>
 </form>
-<h4>我的好友：</h4>
-<#list friends as item>
-姓名：${item.name} , 年龄${item.age}
-<br>
-</#list>
+<#if error ??>
+<h4>用户名或密码错误，请重新输入</h4>
+</#if>
 </body>
 </html>

@@ -33,10 +33,13 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        // TODO 根据用户名，查找到对应的密码，与角色
+        // 根据用户名，查找到对应的密码，与角色
         SysUser sysUserCondition = new SysUser();
         sysUserCondition.setUsername(s);
         SysUser sysUser = sysUserMapper.selectOne(sysUserCondition);
+        if (sysUser == null) {
+            throw new UsernameNotFoundException("找不到用户名");
+        }
 
         List<Object> roleNameList = new SysRole().sql().selectObjs("SELECT t3.`role_name` FROM sys_role t3 WHERE t3.`id` IN" +
                         "( SELECT t.`pid` FROM sys_role t WHERE t.`id` IN (SELECT t2.`role_id`  FROM user_role t2 WHERE t2.`user_id`={0}))\n" +
