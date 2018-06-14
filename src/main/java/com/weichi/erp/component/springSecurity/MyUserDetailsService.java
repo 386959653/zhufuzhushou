@@ -5,10 +5,8 @@ import com.weichi.erp.dao.SysUserMapper;
 import com.weichi.erp.dao.UserRoleMapper;
 import com.weichi.erp.domain.SysRole;
 import com.weichi.erp.domain.SysUser;
-import com.weichi.erp.domain.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,10 +22,13 @@ import java.util.List;
  */
 @Component
 public class MyUserDetailsService implements UserDetailsService {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private SysUserMapper sysUserMapper;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private SysRoleMapper sysRoleMapper;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private UserRoleMapper userRoleMapper;
 

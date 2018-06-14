@@ -1,8 +1,11 @@
 package com.weichi.erp.domain;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.enums.FieldFill;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 实体父类
@@ -10,6 +13,46 @@ import java.io.Serializable;
  */
 public class SuperDomain<T extends Model> extends Model<T> {
     private Long id;
+    @TableField(fill = FieldFill.INSERT)
+    private String insertUsername;
+    @TableField(fill = FieldFill.INSERT)
+    private Date insertTime;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private String updateUsername;
+
+    public String getInsertUsername() {
+        return insertUsername;
+    }
+
+    public void setInsertUsername(String insertUsername) {
+        this.insertUsername = insertUsername;
+    }
+
+    public String getUpdateUsername() {
+        return updateUsername;
+    }
+
+    public void setUpdateUsername(String updateUsername) {
+        this.updateUsername = updateUsername;
+    }
+
+    public Date getInsertTime() {
+        return insertTime;
+    }
+
+    public void setInsertTime(Date insetTime) {
+        this.insertTime = insetTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public Long getId() {
         return this.id;

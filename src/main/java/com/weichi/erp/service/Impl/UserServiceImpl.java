@@ -10,17 +10,16 @@ import com.weichi.erp.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * Created by Wewon on 2018/5/18 16:53
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserDao, User> implements IUserService {
-
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private UserDao userDao;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private TBlogMapper tBlogMapper;
 

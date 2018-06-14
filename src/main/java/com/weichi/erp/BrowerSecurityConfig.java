@@ -34,8 +34,9 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()        // 定义哪些URL需要被保护、哪些不需要被保护
 //                .antMatchers("/hello2").permitAll()
 //                .antMatchers("/userList").hasAuthority("admin")
-                .anyRequest()               // 任何请求,登录后可以访问
-                .authenticated()
+                .anyRequest()               // 任何请求
+                .permitAll()               // 都可以访问，需要保护的URL在数据库表里配置
+//                .authenticated()            // 登录后可以访问
                 .and()
                 .csrf().disable();          // 关闭csrf防护
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);

@@ -8,9 +8,9 @@ import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
 import com.baomidou.mybatisplus.spring.boot.starter.SpringBootVFS;
+import com.weichi.erp.component.mybatis.MyMetaObjectHandler;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -104,8 +104,14 @@ public class MybatisPlusConfig {
         globalConfiguration.setRefresh(refreshMapper);
         globalConfiguration.setDbColumnUnderline(true);
         globalConfiguration.isCapitalMode();
+        globalConfiguration.setMetaObjectHandler(new MyMetaObjectHandler());
         mybatisPlus.setGlobalConfig(globalConfiguration);
         return mybatisPlus;
     }
+
+//    @Bean
+//    public MetaObjectHandler metaObjectHandler(){
+//        return new MyMetaObjectHandler();
+//    }
 
 }
