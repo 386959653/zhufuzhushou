@@ -64,17 +64,21 @@ insert  into `sys_role`(`id`,`role_name`,`pid`) values (1,'admin',2),(2,'user',N
 /*Table structure for table `sys_user` */
 
 DROP TABLE IF EXISTS `sys_user`;
-
-CREATE TABLE `sys_user` (
-  `id` bigint(20) NOT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='用户表';
-
-/*Data for the table `sys_user` */
-
-insert  into `sys_user`(`id`,`username`,`password`) values (1,'test','123'),(2,'admin','123');
+-- auto-generated definition
+create table sys_user
+(
+  id              bigint       not null
+    primary key,
+  username        varchar(100) null,
+  password        varchar(100) null,
+  update_time     datetime     null,
+  insert_time     datetime     null,
+  insert_username varchar(100) null,
+  update_username varchar(100) null
+)
+  comment '用户表';
+INSERT INTO zhufuzhushou.sys_user (id, username, password, update_time, insert_time, insert_username, update_username) VALUES (1, 'test', '123', '2018-06-14 16:33:13', null, null, null);
+INSERT INTO zhufuzhushou.sys_user (id, username, password, update_time, insert_time, insert_username, update_username) VALUES (2, 'admin', '123', null, null, null, null);
 
 /*Table structure for table `t_blog` */
 
