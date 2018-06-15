@@ -15,7 +15,8 @@
     6. ErpApplication类添加注解（@SpringBootApplication(exclude = { SecurityAutoConfiguration.class})）
     可以不注入springSecurity，达到不用登录验证的目的
     7. 有完整的日志功能，获取日志语句：private Logger logger = LoggerFactory.getLogger(this.getClass());
-    8. 提供了mybatis自动生成代码插件
+    8. 提供了mybatis自动生成代码插件，并且数据库相关信息，项目名称可以从maven配置里读取，
+    这样换数据库或者改变项目名称，该插件无需修改就能使用
     9. 实现了mybatis的分页功能
     10. 实现了把maven依赖库和插件远程仓库配置在pom.xml中（目前是阿里云的仓库）
     11. 既支持通过 @RestController 注解生成restful风格（前后端分离用），也支持通过 @Controller 注解，把页面传到freemarker
