@@ -1,21 +1,3 @@
-/*
-SQLyog Ultimate v12.09 (64 bit)
-MySQL - 5.6.35-log : Database - test2
-*********************************************************************
-*/
-
-/*!40101 SET NAMES utf8 */;
-
-/*!40101 SET SQL_MODE=''*/;
-
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`test2` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `test2`;
-
 /*Table structure for table `role_permission` */
 
 DROP TABLE IF EXISTS `role_permission`;
@@ -64,52 +46,17 @@ insert  into `sys_role`(`id`,`role_name`,`pid`) values (1,'admin',2),(2,'user',N
 /*Table structure for table `sys_user` */
 
 DROP TABLE IF EXISTS `sys_user`;
--- auto-generated definition
-create table sys_user
-(
-  id              bigint       not null
-    primary key,
-  username        varchar(100) null,
-  password        varchar(100) null,
-  update_time     datetime     null,
-  insert_time     datetime     null,
-  insert_username varchar(100) null,
-  update_username varchar(100) null
-)
-  comment '用户表';
-INSERT INTO zhufuzhushou.sys_user (id, username, password, update_time, insert_time, insert_username, update_username) VALUES (1, 'test', '123', '2018-06-14 16:33:13', null, null, null);
-INSERT INTO zhufuzhushou.sys_user (id, username, password, update_time, insert_time, insert_username, update_username) VALUES (2, 'admin', '123', null, null, null, null);
 
-/*Table structure for table `t_blog` */
+CREATE TABLE `sys_user` (
+  `id` bigint(20) NOT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-DROP TABLE IF EXISTS `t_blog`;
+/*Data for the table `sys_user` */
 
-CREATE TABLE `t_blog` (
-  `blog_id` int(10) unsigned NOT NULL,
-  `blog_title` varchar(45) DEFAULT NULL,
-  `blog_content` text,
-  `user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`blog_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `t_blog` */
-
-insert  into `t_blog`(`blog_id`,`blog_title`,`blog_content`,`user_id`) values (1,'a',NULL,1),(2,'b',NULL,2),(3,NULL,NULL,NULL);
-
-/*Table structure for table `t_user` */
-
-DROP TABLE IF EXISTS `t_user`;
-
-CREATE TABLE `t_user` (
-  `user_id` int(10) unsigned NOT NULL,
-  `user_name` varchar(45) DEFAULT NULL,
-  `user_address` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `t_user` */
-
-insert  into `t_user`(`user_id`,`user_name`,`user_address`) values (1,'A','a'),(2,'B','b'),(3,'C','c'),(4,'D','d');
+insert  into `sys_user`(`id`,`username`,`password`) values (1,'test','123'),(2,'admin','123');
 
 /*Table structure for table `user_role` */
 
@@ -126,7 +73,75 @@ CREATE TABLE `user_role` (
 
 insert  into `user_role`(`id`,`user_id`,`role_id`) values (1,1,2),(2,2,1);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+drop table if exists group_list;
+
+/*==============================================================*/
+/* Table: group_list                                            */
+/*==============================================================*/
+create table group_list
+(
+   id                   bigint not null,
+   group_name           varchar(100),
+   group_owner_user_id  bigint,
+   generate_purchase_list_time datetime,
+   insert_username      varchar(100),
+   insert_time          datetime,
+   update_username      varchar(100),
+   update_time          datetime,
+   primary key (id)
+);
+
+
+drop table if exists user_group;
+
+/*==============================================================*/
+/* Table: user_group                                            */
+/*==============================================================*/
+create table user_group
+(
+   id                   bigint not null,
+   user_id              bigint,
+   group_id             bigint,
+   group_role           enum("煮妇","吃货"),
+   insert_username      varchar(100),
+   insert_time          datetime,
+   update_username      varchar(100),
+   update_time          datetime,
+   primary key (id)
+);
+
+
+drop table if exists order_list;
+
+/*==============================================================*/
+/* Table: order_list                                            */
+/*==============================================================*/
+create table order_list
+(
+   id                   bigint not null,
+   user_id              bigint,
+   menu_id              bigint,
+   insert_username      varchar(100),
+   insert_time          datetime,
+   update_username      varchar(100),
+   update_time          datetime,
+   primary key (id)
+);
+
+
+drop table if exists menu;
+
+/*==============================================================*/
+/* Table: menu                                                  */
+/*==============================================================*/
+create table menu
+(
+   id                   bigint not null,
+   dish_name            varchar(100),
+   insert_username      varchar(100),
+   insert_time          datetime,
+   update_username      varchar(100),
+   update_time          datetime,
+   primary key (id)
+);
+

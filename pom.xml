@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.weichi</groupId>
-    <artifactId>erp</artifactId>
+    <artifactId>zhufuzhushou</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>erp</name>
-    <description>weichi erp</description>
+    <name>zhufuzhushou</name>
+    <description>weichi zhufuzhushou</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -148,7 +148,7 @@
     </dependencies>
 
     <build>
-        <finalName>erp</finalName>
+        <finalName>zhufuzhushou</finalName>
         <!--拷贝并替换属性文件中的占位符,用profile中的环境变量 -->
         <resources>
             <resource>
@@ -175,7 +175,8 @@
             </activation>
             <properties>
                 <resource.delimiter>${}</resource.delimiter>
-                <jdbc.url>jdbc:mysql://192.168.3.105:3306/test2?useUnicode=true&amp;characterEncoding=utf8</jdbc.url>
+                <jdbc.url>jdbc:mysql://192.168.3.105:3306/zhufuzhushou?useUnicode=true&amp;characterEncoding=utf8
+                </jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password>123456</jdbc.password>
                 <log4j.level>DEBUG</log4j.level>
