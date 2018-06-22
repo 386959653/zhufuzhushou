@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 public class MyBatisGen {
     // 改成要生成的表名称，%通配符，支持 [fnd_%],如果连接的数据库、项目的包结构不变，只需改这里就能自动生成domain、xml文件
-    private static final String TABLENAME = "order_list";
+    private static final String TABLENAME = "user_group";
 
     private static final String BASEPACKAGE = "com.weichi.erp";
 
@@ -95,10 +95,23 @@ public class MyBatisGen {
         tableConf.setCountByExampleStatementEnabled(false);
         tableConf.setDeleteByExampleStatementEnabled(false);
 
-        // 关闭自动生成增删改（如果增删改查都关闭，就不会自动生成dao、domain等文件，所以保留自动生成查询语句 ）
+        // 关闭自动生成增删改（如果增删改查都关闭，就不会自动生成dao、domain等文件，所以保留自动生成查询语句 ，可以通过不生成主键来不让查询语句生成）
         tableConf.setInsertStatementEnabled(false);
         tableConf.setDeleteByPrimaryKeyStatementEnabled(false);
         tableConf.setUpdateByPrimaryKeyStatementEnabled(false);
+
+        //不用生成的列
+        IgnoredColumn ignoredColumn = new IgnoredColumn("insert_username");
+        tableConf.addIgnoredColumn(ignoredColumn);
+        IgnoredColumn ignoredColumn2 = new IgnoredColumn("insert_time");
+        tableConf.addIgnoredColumn(ignoredColumn2);
+        IgnoredColumn ignoredColumn3 = new IgnoredColumn("update_username");
+        tableConf.addIgnoredColumn(ignoredColumn3);
+        IgnoredColumn ignoredColumn4 = new IgnoredColumn("update_time");
+        tableConf.addIgnoredColumn(ignoredColumn4);
+        IgnoredColumn ignoredColumn5 = new IgnoredColumn("id");
+        tableConf.addIgnoredColumn(ignoredColumn5);
+
 //        tableConf.setSelectByPrimaryKeyStatementEnabled(false);
 
         //tableConf.setDomainObjectName("ReceiptSnapshot");

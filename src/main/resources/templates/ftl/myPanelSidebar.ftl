@@ -1,19 +1,6 @@
-<#import "ftl/base.ftl" as ListPage>
-
-<@ListPage.Html title="煮妇助手">
-<#--<div>-->
-<#--<ul class="nav nav-pills nav-stacked">-->
-<#--<li role="presentation" class="active"><a href="#">Home</a></li>-->
-<#--<li role="presentation"><a href="#">Profile</a></li>-->
-<#--<li role="presentation"><a href="#">Messages</a></li>-->
-<#--</ul>-->
-<#--<hr>-->
-<#--<ul class="nav nav-pills nav-stacked">-->
-<#--<li role="presentation"><a href="#">Home</a></li>-->
-<#--<li role="presentation"><a href="#">Profile</a></li>-->
-<#--<li role="presentation"><a href="#">Messages</a></li>-->
-<#--</ul>-->
-<#--</div>-->
+<#import "base.ftl" as ListPage>
+<#macro Html title="" css="">
+    <@ListPage.Html title="${title}" css="${css}">
 <div class="page-wrapper">
     <div class="column-menu column-menu-task">
         <div class="logo-wrap" id="switch-workplace">
@@ -37,5 +24,7 @@
         </div>
 
     </div>
+    <#nested>
 </div>
 </@ListPage.Html>
+</#macro>

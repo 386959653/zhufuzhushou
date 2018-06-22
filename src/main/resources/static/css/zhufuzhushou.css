@@ -545,7 +545,7 @@ a:hover, a:link {
 }
 
 .main-task {
-    margin-left: 90px
+    margin-left: 120px
 }
 
 .avatar {
@@ -962,6 +962,13 @@ ol, ul {
     width: 32px;
     line-height: 32px;
     background: url(../img/icon.png) no-repeat
+}
+
+[class^=glyphicon] {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
 }
 
 .m-icon-ok {
@@ -2831,8 +2838,8 @@ label {
 }
 
 .box-task {
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
     float: left;
     padding-top: 10px
 }

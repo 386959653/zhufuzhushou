@@ -1,8 +1,10 @@
 package com.weichi.erp.controller;
 
+import com.weichi.erp.domain.Menu;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,9 +13,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("myPanel")
 public class MyPanelController {
-    @RequestMapping("show")
-    public String show(Map<String, Object> map) {
-        return "myPanel";
+    @RequestMapping("orderDish")
+    public String orderDish(Map<String, Object> map) {
+        List<Menu> menuList = new Menu().selectAll();
+        map.put("menuList", menuList);
+        return "myPanel/orderDish";
     }
 
 }
