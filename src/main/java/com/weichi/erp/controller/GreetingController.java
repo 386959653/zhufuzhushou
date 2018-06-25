@@ -1,6 +1,7 @@
 package com.weichi.erp.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.weichi.erp.component.myType.JsonResult;
 import com.weichi.erp.domain.SysUser;
 import com.weichi.erp.domain.TBlog;
 import com.weichi.erp.service.IUserService;
@@ -44,6 +45,12 @@ public class GreetingController {
     public boolean insertUserTest() {
         SysUser sysUser = new SysUser();
         return sysUser.insert();
+    }
+
+    @RequestMapping("jsonResultTest")
+    public JsonResult<?> jsonResultTest() {
+        JsonResult jsonResult = new JsonResult();
+        return jsonResult;
     }
 
 }
