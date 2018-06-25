@@ -1,8 +1,10 @@
 package com.weichi.erp.controller;
 
+import com.weichi.erp.component.myType.JsonResult;
 import com.weichi.erp.domain.Menu;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,14 @@ public class MyPanelController {
         List<Menu> menuList = new Menu().selectAll();
         map.put("menuList", menuList);
         return "myPanel/orderDish";
+    }
+
+
+    @ResponseBody
+    @RequestMapping("orderOrCancel")
+    public JsonResult<?> orderOrCancel() {
+        JsonResult jsonResult = new JsonResult();
+        return jsonResult;
     }
 
 }
