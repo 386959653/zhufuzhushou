@@ -4,6 +4,7 @@ import com.weichi.erp.component.myType.JsonResult;
 import com.weichi.erp.domain.Menu;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -25,8 +26,13 @@ public class MyPanelController {
 
     @ResponseBody
     @RequestMapping("orderOrCancel")
-    public JsonResult<?> orderOrCancel() {
+    public JsonResult<?> orderOrCancel(@RequestParam(value = "flag") String flag) {
         JsonResult jsonResult = new JsonResult();
+        if ("order".equalsIgnoreCase(flag)) {
+
+        } else {
+
+        }
         return jsonResult;
     }
 

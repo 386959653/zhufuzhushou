@@ -34,7 +34,7 @@
                     style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
     <#list menuList as item>
         <li class="unfinished" style="display: list-item;">
-            <div class="icheckbox_todo-yellow" style="position: relative;">
+            <div v-on:click="orderOrCancel" class="icheckbox_todo-yellow" style="position: relative;">
                 <input type="checkbox" class="rank2"
                        style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
                 <ins class="iCheck-helper"
@@ -55,4 +55,34 @@
     </div>
 </div>
 </div>
+<script>
+    var menu = new Vue({
+        el: '#ul-task-wrap-2',
+        data: {ajaxStatus: false},
+        methods: {
+            orderOrCancel: function (event) {
+                if ($(event.currentTarget).hasClass("checked")) {
+                    var url = "orderOrCancel?flag=cancel";
+                    var _self = this;
+                    $.get(url, function (data) {
+                        if (data.status = "ok") {
+                            _self.ajaxStatus = true;
+                        }
+                    })
+                } else {
+                    var url = "orderOrCancel?flag=order";
+                    var _self = this;
+                    $.get(url, function (data) {
+                        if (data.status = "ok") {
+                            _self.ajaxStatus = true;
+                        }
+                    })
+                }
+                if (this.ajaxStatus) {
+                    event.currentTarget.classList.toggle("checked");
+                }
+            }
+        }
+    })
+</script>
 </@ListPage.Html>
