@@ -2,6 +2,7 @@ package com.weichi.erp;
 
 
 import com.baomidou.mybatisplus.MybatisConfiguration;
+import com.baomidou.mybatisplus.MybatisMapWrapperFactory;
 import com.baomidou.mybatisplus.MybatisXMLLanguageDriver;
 import com.baomidou.mybatisplus.entity.GlobalConfiguration;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
@@ -87,6 +88,10 @@ public class MybatisPlusConfig {
         }
         MybatisConfiguration mc = new MybatisConfiguration();
         mc.setDefaultScriptingLanguage(MybatisXMLLanguageDriver.class);
+        //*注册Map 下划线转驼峰*
+        mc.setObjectWrapperFactory(new MybatisMapWrapperFactory());
+        mc.setMapUnderscoreToCamelCase(true);
+
         mybatisPlus.setConfiguration(mc);
         if (this.databaseIdProvider != null) {
             mybatisPlus.setDatabaseIdProvider(this.databaseIdProvider);

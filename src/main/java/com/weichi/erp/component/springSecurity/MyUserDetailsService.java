@@ -8,7 +8,6 @@ import com.weichi.erp.domain.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -52,8 +51,8 @@ public class MyUserDetailsService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(roleName.toString()));
         }
 
-        // 封装用户信息，并返回。参数分别是：用户名，密码，用户角色
-        User user = new User(s, sysUser.getPassword(), authorities);
+        // 封装用户信息，并返回。参数分别是：用户id，用户名，密码，用户角色
+        MyUserDetails user = new MyUserDetails(sysUser.getId(), s, sysUser.getPassword(), authorities);
         return user;
     }
 }

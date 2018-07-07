@@ -29,12 +29,14 @@
     </div>
     <div class="content" id="content" style="height: 546px;">
         <div class="box-task box-task2">
-            <div id="ul-task-wrap-2" class="ul-task-wrap" style="height: 210px;">
+            <div id="ul-task-wrap-2" class="ul-task-wrap">
                 <ul class="ul-task margin-l20"
                     style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
     <#list menuList as item>
         <li class="unfinished" style="display: list-item;">
-            <div v-on:click="orderOrCancel" class="icheckbox_todo-yellow" style="position: relative;">
+            <div v-on:click="orderOrCancel('${item.id}',$event)"
+                 class="icheckbox_todo-yellow <#if item.orderListId ??>checked</#if>" style="position: relative;">
+                <input type="hidden" id="orderListId" value="${item.orderListId?if_exists?c}">
                 <input type="checkbox" class="rank2"
                        style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
                 <ins class="iCheck-helper"
@@ -58,23 +60,34 @@
 <script>
     var menu = new Vue({
         el: '#ul-task-wrap-2',
-        data: {ajaxStatus: false},
+        data: {
+            ajaxStatus: false
+            , menuId: -1
+            , orderListId: -1
+        },
         methods: {
-            orderOrCancel: function (event) {
+            orderOrCancel: function (menueId, event) {
+                this.menuId = menueId;
+                $.ajaxSettings.async = false;
+                // 取消
                 if ($(event.currentTarget).hasClass("checked")) {
-                    var url = "orderOrCancel?flag=cancel";
+                    this.orderListId = $(event.currentTarget.firstChild).val();
+                    var url = "orderOrCancel?flag=cancel&orderListId=" + this.orderListId;
                     var _self = this;
                     $.get(url, function (data) {
                         if (data.status = "ok") {
                             _self.ajaxStatus = true;
                         }
                     })
-                } else {
-                    var url = "orderOrCancel?flag=order";
+                } else {// 选取
+                    var url = "orderOrCancel?flag=order&menuId=" + this.menuId;
                     var _self = this;
                     $.get(url, function (data) {
                         if (data.status = "ok") {
                             _self.ajaxStatus = true;
+                            if (data.data != undefined) {
+                                $(event.currentTarget.firstChild).val(data.data)
+                            }
                         }
                     })
                 }

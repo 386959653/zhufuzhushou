@@ -1,6 +1,7 @@
 package com.weichi.erp.component.mybatis;
 
 import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
+import com.weichi.erp.component.springSecurity.MyUserDetails;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -13,9 +14,12 @@ import java.util.Date;
 public class MyMetaObjectHandler extends MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
         Object insertUsername = getFieldValByName("insertUsername", metaObject);
         if (insertUsername == null) {
-            setFieldValByName("insertUsername", SecurityContextHolder.getContext().getAuthentication().getPrincipal(), metaObject);
+            setFieldValByName("insertUsername", userDetails.getUsername(), metaObject);
         }
 
         Object insertTime = getFieldValByName("insertTime", metaObject);
@@ -25,7 +29,7 @@ public class MyMetaObjectHandler extends MetaObjectHandler {
 
         Object updateUsername = getFieldValByName("updateUsername", metaObject);
         if (updateUsername == null) {
-            setFieldValByName("updateUsername", SecurityContextHolder.getContext().getAuthentication().getPrincipal(), metaObject);
+            setFieldValByName("updateUsername", userDetails.getUsername(), metaObject);
         }
 
         Object updateTime = getFieldValByName("updateTime", metaObject);
@@ -38,9 +42,12 @@ public class MyMetaObjectHandler extends MetaObjectHandler {
     //更新填充
     @Override
     public void updateFill(MetaObject metaObject) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
         Object updateUsername = getFieldValByName("updateUsername", metaObject);
         if (updateUsername == null) {
-            setFieldValByName("updateUsername", SecurityContextHolder.getContext().getAuthentication().getPrincipal(), metaObject);
+            setFieldValByName("updateUsername", userDetails.getUsername(), metaObject);
         }
 
         Object updateTime = getFieldValByName("updateTime", metaObject);
