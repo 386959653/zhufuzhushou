@@ -5,6 +5,7 @@
     <select id="listMyMenu" resultType="java.util.Map">
 select t.*,t2.id as orderListId from menu t
   left join order_list t2 on t2.menu_id=t.id and t2.user_id = #{userId}
+  AND t2.insert_time BETWEEN curdate() AND now()
 where 1=1
 order by t.id desc
 

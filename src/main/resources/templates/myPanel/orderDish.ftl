@@ -74,22 +74,22 @@
                     this.orderListId = $(event.currentTarget.firstChild).val();
                     var url = "orderOrCancel?flag=cancel&orderListId=" + this.orderListId;
                     var _self = this;
-                    $.get(url, function (data) {
+                    AjaxHelper.post(url, function (data) {
                         if (data.status = "ok") {
                             _self.ajaxStatus = true;
                         }
-                    })
+                    });
                 } else {// 选取
                     var url = "orderOrCancel?flag=order&menuId=" + this.menuId;
                     var _self = this;
-                    $.get(url, function (data) {
+                    AjaxHelper.post(url, function (data) {
                         if (data.status = "ok") {
                             _self.ajaxStatus = true;
                             if (data.data != undefined) {
                                 $(event.currentTarget.firstChild).val(data.data)
                             }
                         }
-                    })
+                    });
                 }
                 if (this.ajaxStatus) {
                     event.currentTarget.classList.toggle("checked");
