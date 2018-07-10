@@ -1,9 +1,12 @@
 package com.weichi.erp.component.utils;
 
+import com.weichi.erp.component.myType.JsonResult;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -145,4 +148,20 @@ public class WebUtils {
             return false;
         }
     }
+
+    public static void renderString(HttpServletResponse response, String string, String type) {
+        try {
+            response.reset();
+            response.setContentType(type);
+            response.setCharacterEncoding("utf-8");
+            response.getWriter().print(string);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void renderJsonResult(HttpServletResponse response, JsonResult<?> jsonResult) {
+        renderString(response, jsonResult.toJSONString(), "application/json");
+    }
+
 }

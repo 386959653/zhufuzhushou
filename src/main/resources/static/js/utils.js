@@ -321,8 +321,8 @@ var AjaxHelper = (function () {
                     alert('很遗憾', response.message, 'face-sad');
                     succeed = false;
                 }
-                else if (response.status === "sessionTimeout") {
-                    alert('您好', '会话已过期,请重新登录.', 'face-sad');
+                else if (response.status === "needLogin") {
+                    location.replace('/login');
                     succeed = false;
                 } else {
                     if (callback) callback(response);
