@@ -68,7 +68,6 @@
         methods: {
             orderOrCancel: function (menueId, event) {
                 this.menuId = menueId;
-                $.ajaxSettings.async = false;
                 // 取消
                 if ($(event.currentTarget).hasClass("checked")) {
                     this.orderListId = $(event.currentTarget.firstChild).val();
