@@ -74,7 +74,7 @@
                     var url = "orderOrCancel?flag=cancel&orderListId=" + this.orderListId;
                     var _self = this;
                     AjaxHelper.post(url, function (data) {
-                        if (data.status = "ok") {
+                        if (data.status == "ok") {
                             _self.ajaxStatus = true;
                         }
                     });
@@ -82,7 +82,7 @@
                     var url = "orderOrCancel?flag=order&menuId=" + this.menuId;
                     var _self = this;
                     AjaxHelper.post(url, function (data) {
-                        if (data.status = "ok") {
+                        if (data.status == "ok") {
                             _self.ajaxStatus = true;
                             if (data.data != undefined) {
                                 $(event.currentTarget.firstChild).val(data.data)
