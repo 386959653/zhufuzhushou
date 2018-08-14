@@ -36,7 +36,8 @@
         <li class="unfinished" style="display: list-item;">
             <div v-on:click="orderOrCancel('${item.id}',$event)"
                  class="icheckbox_todo-yellow <#if item.orderListId ??>checked</#if>" style="position: relative;">
-                <input type="hidden" id="orderListId" value="${item.orderListId?if_exists?c}">
+            <#--<input type="hidden" id="orderListId" value="${item.orderListId?if_exists?c}">-->
+                <input type="hidden" id="orderListId" value="${item.orderListId?if_exists}">
                 <input type="checkbox" class="rank2"
                        style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
                 <ins class="iCheck-helper"
@@ -77,7 +78,7 @@
                         if (data.status == "ok") {
                             _self.ajaxStatus = true;
                         }
-                    });
+                    }, false);
                 } else {// 选取
                     var url = "orderOrCancel?flag=order&menuId=" + this.menuId;
                     var _self = this;
@@ -88,7 +89,7 @@
                                 $(event.currentTarget.firstChild).val(data.data)
                             }
                         }
-                    });
+                    }, false);
                 }
                 if (this.ajaxStatus) {
                     event.currentTarget.classList.toggle("checked");

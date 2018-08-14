@@ -23,14 +23,18 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/zhufuzhushou.css" type="text/css"/>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
-    <script src="../js/dialog.js"></script>
     <script src="../js/utils.js"></script>
+    <link rel="stylesheet" href="../../css/adminLTE/component/font-awesome/css/font-awesome.css" type="text/css"/>
     <style>
             ${css}
     </style>
 </head>
 
 <body>
+    <@com.MY_MODAL id="ajaxErrorModal" title="错误消息"/>
+<div class="loading" style="display: none;">
+    <i class="fa fa-refresh fa-spin"></i>
+</div>
     <#nested>
 </body>
 
