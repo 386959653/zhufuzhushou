@@ -42,8 +42,6 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .permitAll()               // 都可以访问，需要保护的URL在数据库表里配置
                 .authenticated()            // 登录后可以访问
                 .and()
-                .headers().frameOptions().disable() // 允许网页被iFrame，这样隐性URL才起作用
-                .and()
                 .csrf().disable();          // 关闭csrf防护
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
     }
